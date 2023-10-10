@@ -5,7 +5,7 @@ FROM jupyter/datascience-notebook:latest
 RUN mkdir /home/jovyan/work/build-ml-pipeline-for-short-term-rental-prices
 
 # Set the working directory to /home/jovyan/work
-WORKDIR /home/jovyan/work
+WORKDIR /home/jovyan/work/build-ml-pipeline-for-short-term-rental-prices
 
 # Copy the current directory contents into the container
 COPY . /home/jovyan/work/build-ml-pipeline-for-short-term-rental-prices
