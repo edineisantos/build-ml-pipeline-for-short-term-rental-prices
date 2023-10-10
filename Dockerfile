@@ -1,5 +1,5 @@
-# Use jupyter/datascience-notebook
-FROM jupyter/datascience-notebook:latest
+# Use jupyter/base-notebook
+FROM jupyter/base-notebook:python-3.8.13
 
 # Make the directory for the project files
 RUN mkdir /home/jovyan/work/build-ml-pipeline-for-short-term-rental-prices
