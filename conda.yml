@@ -6,6 +6,7 @@ dependencies:
   - python=3.8
   - pyyaml
   - hydra-core
+  - git=2.34.1
   - pip
   - pip:
       - mlflow

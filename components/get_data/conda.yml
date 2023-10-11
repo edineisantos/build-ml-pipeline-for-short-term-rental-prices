@@ -6,6 +6,7 @@ dependencies:
   - python=3.8
   - pip
   - requests
+  - git=2.34.1
   - pip:
       - mlflow
       - wandb

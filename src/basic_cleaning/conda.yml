@@ -4,6 +4,7 @@ channels:
   - defaults
 dependencies:
   - python=3.8
+  - git=2.34.1
   - numpy
   - pip
   - pip:
