@@ -5,13 +5,12 @@ channels:
 dependencies:
   - python=3.8
   - git=2.34.1
-  - protobuf=3.20
-  - numpy=1.19.5
-  - pandas=1.1.4
-  - pip=20.3.3
-  - scikit-learn=0.24.1
-  - matplotlib=3.2.2
-  - pillow=8.1.2
+  - numpy
+  - pandas
+  - pip
+  - scikit-learn
+  - matplotlib
+  - pillow
   - pip:
-      - mlflow==1.14.1
-      - wandb==0.10.21
+      - mlflow
+      - wandb
