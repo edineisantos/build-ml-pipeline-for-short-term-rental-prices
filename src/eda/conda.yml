@@ -4,13 +4,14 @@ channels:
   - defaults
 dependencies:
   - python=3.8
-  - git=2.34.1
   - jupyterlab
-  - numpy
-  - seaborn
-  - pandas
+  - protobuf=3.20.0
+  - numpy=1.19.5
+  - seaborn=0.12.1
+  - pandas=1.2.5
   - pip
-  - pandas-profiling
+  - ipywidgets
   - pyarrow
   - pip:
-      - wandb
+      - wandb==0.10.31
+      - ydata_profiling==4.0.0
