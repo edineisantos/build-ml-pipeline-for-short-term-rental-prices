@@ -18,6 +18,9 @@ RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh &
 # Update PATH so that pip and conda are available
 ENV PATH="/miniconda/bin:${PATH}"
 
+# Initiate conda for shell use
+RUN conda init bash && echo "conda activate base" >> ~/.bashrc
+
 # Install any needed packages specified in requirements.txt
 RUN pip install -r requirements.txt
 
@@ -25,6 +28,10 @@ RUN pip install -r requirements.txt
 EXPOSE 8888
 EXPOSE 8889
 EXPOSE 8890
+
+# Initiate Jupyter Lab
+CMD ["jupyter", "lab", "--ip=0.0.0.0", "--port=8888", "--no-browser", "--allow-root"]
+
 
 
 
