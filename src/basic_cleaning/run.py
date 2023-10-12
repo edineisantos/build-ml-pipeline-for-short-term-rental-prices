@@ -5,6 +5,7 @@ Performs basic cleaning on the data and save the results in Weights & Biases
 import argparse
 import logging
 import wandb
+import pandas as pd
 
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)-15s %(message)s")
@@ -18,39 +19,75 @@ def go(args):
 
     # Download input artifact. This will also log that this script is using this
     # particular version of the artifact
-    # artifact_local_path = run.use_artifact(args.input_artifact).file()
+    artifact_local_path = run.use_artifact(args.input_artifact).file()
 
-    ######################
-    # YOUR CODE HERE     #
-    ######################
+    # Load the data
+    df = pd.read_csv(artifact_local_path)
 
+    # Drop outliers
+    idx = df['price'].between(args.min_price, args.max_price)
+    df = df[idx].copy()
+
+    # Convert last_review to datetime
+    df['last_review'] = pd.to_datetime(df['last_review'])
+
+    # Save the cleaned data to CSV
+    df.to_csv("clean_sample.csv", index=False)
+    
+    # Create a new artifact and upload it back to W&B
+    artifact = wandb.Artifact(
+        args.output_artifact,
+        type=args.output_type,
+        description=args.output_description,
+    )
+    artifact.add_file("clean_sample.csv")
+    run.log_artifact(artifact)
 
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description="This steps cleans the data")
 
-
     parser.add_argument(
-        "--parameter1", 
-        type=## INSERT TYPE HERE: str, float or int,
-        help=## INSERT DESCRIPTION HERE,
+        "--input_artifact", 
+        type=str,
+        help="Artifact name and version in the form name:version",
         required=True
     )
 
     parser.add_argument(
-        "--parameter2", 
-        type=## INSERT TYPE HERE: str, float or int,
-        help=## INSERT DESCRIPTION HERE,
+        "--output_artifact", 
+        type=str,
+        help="Name for the output artifact",
         required=True
     )
 
     parser.add_argument(
-        "--parameter3", 
-        type=## INSERT TYPE HERE: str, float or int,
-        help=## INSERT DESCRIPTION HERE,
+        "--output_type", 
+        type=str,
+        help="Type for the output artifact",
         required=True
     )
 
+    parser.add_argument(
+        "--output_description", 
+        type=str,
+        help="Description for the output artifact",
+        required=True
+    )
+
+    parser.add_argument(
+        "--min_price", 
+        type=float,
+        help="Minimum price to filter the data",
+        required=True
+    )
+
+    parser.add_argument(
+        "--max_price", 
+        type=float,
+        help="Maximum price to filter the data",
+        required=True
+    )
 
     args = parser.parse_args()
 
