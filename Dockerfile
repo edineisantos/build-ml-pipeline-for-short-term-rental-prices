@@ -1,25 +1,14 @@
-# Use the official Python 3.8 image
-FROM python:3.8
+# Use jupyter/base-notebook
+FROM jupyter/base-notebook:python-3.8.13
 
-# Set the working directory in the container
-WORKDIR /usr/src/app
+# Make the directory for the project files
+RUN mkdir /home/jovyan/work/build-ml-pipeline-for-short-term-rental-prices
+
+# Set the working directory to /home/jovyan/work
+WORKDIR /home/jovyan/work/build-ml-pipeline-for-short-term-rental-prices
 
 # Copy the current directory contents into the container
-COPY . .
-
-# Install git using apt
-RUN apt-get update && apt-get install -y git
-
-# Install Miniconda
-RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh && \
-    bash Miniconda3-latest-Linux-x86_64.sh -b -p /miniconda && \
-    rm Miniconda3-latest-Linux-x86_64.sh
-
-# Update PATH so that pip and conda are available
-ENV PATH="/miniconda/bin:${PATH}"
-
-# Initiate conda for shell use
-RUN conda init bash && echo "conda activate base" >> ~/.bashrc
+COPY . /home/jovyan/work/build-ml-pipeline-for-short-term-rental-prices
 
 # Install any needed packages specified in requirements.txt
 RUN pip install -r requirements.txt
@@ -28,9 +17,6 @@ RUN pip install -r requirements.txt
 EXPOSE 8888
 EXPOSE 8889
 EXPOSE 8890
-
-# Initiate Jupyter Lab
-CMD ["jupyter", "lab", "--ip=0.0.0.0", "--port=8888", "--no-browser", "--allow-root"]
 
 
 
