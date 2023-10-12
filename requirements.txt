@@ -10,3 +10,6 @@ matplotlib
 pillow
 mlflow
 requests
+cookiecutter
+hydra-core
+ipython
