@@ -7,11 +7,11 @@ dependencies:
   - notebook
   - jupyterlab
   - cookiecutter
-  - hydra-core=1.0.6
+  - hydra-core
   - matplotlib
   - pandas
   - numpy
-  - git=2.34.1
+  - git
   - pip
   - pip:
       - mlflow
