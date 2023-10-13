@@ -1,0 +1,8 @@
+# Metadata for the best random forest model
+random_forest:
+  criterion: mae
+  max_depth: 15
+  max_features: 0.5
+  min_samples_leaf: 3
+  min_samples_split: 4
+  n_estimators: 100
