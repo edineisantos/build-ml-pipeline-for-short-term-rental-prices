@@ -25,7 +25,8 @@ This project provides a solution designed for a property management company that
   * [Visualize the pipeline](#visualize-the-pipeline)
   * [Release the pipeline](#release-the-pipeline)
   * [Train the model on a new data sample](#train-the-model-on-a-new-data-sample)
-- [Cleaning up](#cleaning-up)
+- [Weights & Biases](#weights---biases)
+- [License](#license)
 
 ## Preliminary steps
 ### Fork the Starter kit
@@ -590,6 +591,9 @@ This will drop rows in the dataset that are not in the proper geolocation.
 Then commit your change, make a new release (for example ``1.0.1``) and retry (of course you need to use 
 ``-v 1.0.1`` when calling mlflow this time). Now the run should succeed and voit la', 
 you have trained your new model on the new data.
+
+## Weights & Biases
+[Weights & Biases](https://www.wandb.com/) is a tool designed for machine learning practitioners that aids in experiment tracking, project collaboration, and result visualization. It enables users to monitor their machine learning code, system metrics, and model performance seamlessly. The [provided link](https://wandb.ai/edineisantos/nyc_airbnb) contains the execution pipeline specifically designed for this project.
 
 ## License
 
