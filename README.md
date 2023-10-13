@@ -1,16 +1,12 @@
 # Build an ML Pipeline for Short-Term Rental Prices in NYC
-You are working for a property management company renting rooms and properties for short periods of 
-time on various rental platforms. You need to estimate the typical price for a given property based 
-on the price of similar properties. Your company receives new data in bulk every week. The model needs 
-to be retrained with the same cadence, necessitating an end-to-end pipeline that can be reused.
-
-In this project you will build such a pipeline.
+This project provides a solution designed for a property management company that rents out rooms and properties for short durations across multiple rental platforms. The core objective is to estimate the typical price for a specific property, leveraging data from similar properties. While the project does include data cleaning and machine learning components, these elements are simplified to emphasize the pipeline structure and its importance. Given the influx of new data on a weekly basis, there's a pressing need for consistent model retraining. This solution offers an end-to-end pipeline tailored for this requirement, highlighting its applicability in real-world scenarios.
 
 ## Table of contents
 
 - [Introduction](#build-an-ML-Pipeline-for-Short-Term-Rental-Prices-in-NYC)
 - [Preliminary steps](#preliminary-steps)
   * [Fork the Starter Kit](#fork-the-starter-kit)
+  * [Create container](#create-container)
   * [Create environment](#create-environment)
   * [Get API key for Weights and Biases](#get-api-key-for-weights-and-biases)
   * [Cookie cutter](#cookie-cutter)
@@ -48,6 +44,37 @@ cd build-ml-pipeline-for-short-term-rental-prices
 ```
 Commit and push to the repository often while you make progress towards the solution. Remember 
 to add meaningful commit messages.
+
+### Create Container
+
+To set up and run the container for the ML pipeline, follow these steps:
+
+1. **Build the Docker Image:**
+   Use the following command to create a Docker image named `ml_pipeline_image` from the provided Dockerfile:
+   ```bash
+   docker build -t ml_pipeline_image .
+   ```
+
+2. **Run the Container:**
+   With the image built, initiate a container named `ml_pipeline_container`. This will map the project directory to a working directory within the container and expose ports 8888, 8889, and 8890:
+   ```bash
+   docker run --name ml_pipeline_container -p 8888:8888 -p 8889:8889 -p 8890:8890 -v ${PWD}:/home/jovyan/work/build-ml-pipeline-for-short-term-rental-prices ml_pipeline_image
+   ```
+
+3. **Access the Container's Terminal:**
+   To execute commands within the container, access its terminal using:
+   ```bash
+   docker exec -it ml_pipeline_container /bin/bash
+   ```
+
+4. **Install Git:**
+   Git is essential for this project. Ensure to install it in the base conda environment with the following command once inside the container's terminal:
+   ```bash
+   conda install git
+   ```
+
+With Git installed, you can proceed with any versioning or repository-related tasks within the container.
+
 
 ### Create environment
 Make sure to have conda installed and ready, then create a new environment using the ``environment.yml``
