@@ -1,0 +1,15 @@
+jupyterlab
+numpy
+seaborn
+pandas
+pandas-profiling
+pyarrow
+wandb
+scikit-learn
+matplotlib
+pillow
+mlflow
+requests
+cookiecutter
+hydra-core
+ipython
